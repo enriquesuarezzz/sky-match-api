@@ -8,6 +8,7 @@ import airlinesRoutes from "./routes/airlines.mjs";
 import crewRoutes from "./routes/crew.mjs";
 import rentalsRoutes from "./routes/rentals.mjs";
 import reviewsRoutes from "./routes/reviews.mjs";
+import loginRoutes from "./routes/login.mjs";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use("/api/airlines", airlinesRoutes);
 app.use("/api/crew", crewRoutes);
 app.use("/api/rentals", rentalsRoutes);
 app.use("/api/reviews", reviewsRoutes);
+app.use("/api/login", loginRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
