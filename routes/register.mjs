@@ -1,16 +1,16 @@
 import { Router } from "express";
 import pool from "../db.mjs";
-import { body, validationResult } from "express-validator"; // For input validation
+import { body, validationResult } from "express-validator";
 
 const router = Router();
 
-// Register a new airline
+// register an airline
 router.post(
+  //validate data
   "/",
   [
-    // Validation rules
     body("name").notEmpty().withMessage("Name is required"),
-    body("country").notEmpty().withMessage("Country is required"), // Make country required
+    body("country").notEmpty().withMessage("Country is required"),
     body("email").isEmail().withMessage("Email is invalid"),
     body("password")
       .isLength({ min: 6 })
@@ -20,15 +20,12 @@ router.post(
       .withMessage("Invalid rental role"),
   ],
   async (req, res) => {
-    // Validate input
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     const { name, country, email, password, rental_role } = req.body;
-
-    console.log("Received registration request:", req.body);
 
     try {
       // Check if the email already exists
@@ -37,24 +34,20 @@ router.post(
         [email]
       );
       if (existingUsers.length > 0) {
-        return res.status(409).json({ message: "Email already in use" });
+        return res
+          .status(409)
+          .json({ message: "Ya exiiste una cuenta con este email" });
       }
 
-      // Insert the new airline into the database without hashing the password
+      // Insert the new airline into the ddbb
       await pool.query(
         "INSERT INTO Airlines (name, country, email, password, rental_role) VALUES (?, ?, ?, ?, ?)",
-        [
-          name,
-          country,
-          email,
-          password, // Store password as plain text
-          rental_role,
-        ]
+        [name, country, email, password, rental_role]
       );
 
-      res.status(201).json({ message: "Registration successful" });
+      res.status(201).json({ message: "Usuario registrado correctamente" });
     } catch (error) {
-      console.error("Database error:", error.message || error);
+      console.error("Error en la base de datos:", error.message || error);
       res.status(500).json({ message: "Internal server error" });
     }
   }
