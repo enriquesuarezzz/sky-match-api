@@ -39,6 +39,7 @@ Create a .env file in the root of your project and add the following environment
     DB_USER=your-database-username
     DB_PASSWORD=your-database-password
     DB_NAME=your-database-name
+    JWT_SECRET=your-secret-key
 
     
 Replace your-database-host, your-database-username, your-database-password, and your-database-name with your actual database credentials.
@@ -64,3 +65,4 @@ Here are the main endpoints provided by the API:
     MySQL2 - MySQL client for Node.js with promises
     dotenv - Loads environment variables from a .env file
     cors - Enables Cross-Origin Resource Sharing (CORS)
+    jsonwebtoken -  library for securely creating and verifying JSON Web Tokens (JWTs), which are used for authentication and information exchange between parties.
