@@ -59,23 +59,23 @@ By default, the server will run on http://localhost:5000.
 Here are the main endpoints provided by the API:
     
     Aircrafts
-      GET /api/aircrafts - Get all aircrafts
+    GET /api/aircrafts - Get all aircrafts
     
     Airlines
-     GET /api/airlines - Get all airlines
+    GET /api/airlines - Get all airlines
     
     Crew
-     GET /api/crew - Get all crew
+    GET /api/crew - Get all crew
 
-     Login
-     POST /api/login - Airline Log in 
+    Login
+    POST /api/login - Airline Log in 
 
     Register
     POST /api/register - Register new airline
 
-     Rentals
-     GET /api/rentals - Get all rentals
-      POST /api/rentals  - Create rental
+    Rentals
+    GET /api/rentals - Get all rentals
+    POST /api/rentals  - Create rental
 
     Reviews
     POST /api/revies - Create review
