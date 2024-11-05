@@ -46,6 +46,7 @@ router.post("/", async (req, res) => {
     airline_requesting_id,
     rental_date,
     rental_duration_hours,
+    route,
   } = req.body;
 
   try {
@@ -65,14 +66,15 @@ router.post("/", async (req, res) => {
     //insert rental in the ddbb
     const [result] = await pool.query(
       `INSERT INTO Rentals 
-        (aircraft_id, airline_requesting_id, rental_date, rental_duration_hours, rental_cost)
-      VALUES (?, ?, ?, ?, ?)`,
+        (aircraft_id, airline_requesting_id, rental_date, rental_duration_hours, rental_cost, route)
+      VALUES (?, ?, ?, ?, ?, ?)`,
       [
         aircraft_id,
         airline_requesting_id,
         rental_date,
         rental_duration_hours,
         rental_cost,
+        route,
       ]
     );
 
