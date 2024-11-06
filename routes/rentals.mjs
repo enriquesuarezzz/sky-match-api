@@ -57,7 +57,7 @@ router.post("/", async (req, res) => {
     );
 
     if (aircraftRows.length === 0) {
-      return res.status(404).json({ message: "Aircraft not found" });
+      return res.status(404).json({ message: "No se ha encontrado el avión" });
     }
     //calculate the rental cost depending on the aircraft selected
     const price_per_hour = aircraftRows[0].price_per_hour;
@@ -79,13 +79,16 @@ router.post("/", async (req, res) => {
     );
 
     res.status(201).json({
-      message: "Rental created successfully",
+      message:
+        "Reserva confimada correctamente el coste total será de " +
+        rental_cost +
+        " €",
       rental_id: result.insertId,
       rental_cost,
     });
   } catch (error) {
-    console.error("Error creating rental:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Error en la reserva:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
   }
 });
 
@@ -94,20 +97,22 @@ router.delete("/:id", async (req, res) => {
   const id = parseInt(req.params.id, 10); // Ensure id is a number
 
   if (isNaN(id)) {
-    return res.status(400).json({ message: "Invalid rental ID" });
+    return res.status(400).json({ message: "ID de reserva no válido" });
   }
 
   try {
     const [result] = await pool.query("DELETE FROM Rentals WHERE id = ?", [id]);
 
     if (result.affectedRows === 0) {
-      return res.status(404).json({ message: "Rental not found" });
+      return res
+        .status(404)
+        .json({ message: "No se ha encontrado la reserva" });
     }
 
-    res.status(200).json({ message: "Rental deleted successfully" });
+    res.status(200).json({ message: "Reserva eliminada correctamente" });
   } catch (err) {
-    console.error("Error deleting rental:", err); // Log the error for debugging
-    res.status(500).json({ message: "Internal Server Error" });
+    console.error("Error eliminando la reserva:", err); // Log the error for debugging
+    res.status(500).json({ message: "Error interno del servidor" });
   }
 });
 
