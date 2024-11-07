@@ -15,4 +15,31 @@ router.get("/", async (req, res) => {
   }
 });
 
+// add a new review
+router.post("/", async (req, res) => {
+  const { airline_id, rental_id, rating, review_text } = req.body;
+
+  // validate fields
+  if (!airline_id || !rental_id || !rating) {
+    return res
+      .status(400)
+      .json({ message: "Airline ID, Rental ID, and rating are required." });
+  }
+
+  try {
+    // insert new review into the ddbb
+    const [result] = await pool.query(
+      "INSERT INTO Reviews (airline_id, rental_id, rating, review_text) VALUES (?, ?, ?, ?)",
+      [airline_id, rental_id, rating, review_text || null]
+    );
+
+    res.status(201).json({
+      message: "Reseña creada correctamente",
+      review_id: result.insertId,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 export default router;
