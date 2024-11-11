@@ -47,16 +47,17 @@ router.delete("/:id", async (req, res) => {
 
 // add a new aircraft
 router.post("/", async (req, res) => {
-  const { airline_id, type, aircraft_image_url, capacity } = req.body;
+  const { airline_id, type, capacity, price_per_hour, aircraft_image_url } =
+    req.body;
 
-  if (!airline_id || !type || !capacity) {
+  if (!airline_id || !type || !capacity || price_per_hour === undefined) {
     return res.status(400).json({ message: "Faltan campos requeridos" });
   }
 
   try {
     const [result] = await pool.query(
-      "INSERT INTO Aircraft (airline_id, type, aircraft_image_url, capacity) VALUES (?, ?, ?, ?)",
-      [airline_id, type, aircraft_image_url, capacity]
+      "INSERT INTO Aircraft (airline_id, type, capacity, price_per_hour, aircraft_image_url) VALUES (?, ?, ?, ?, ?)",
+      [airline_id, type, capacity, price_per_hour, aircraft_image_url]
     );
 
     res.status(201).json({
