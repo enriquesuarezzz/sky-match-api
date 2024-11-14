@@ -86,7 +86,8 @@ Here are the main endpoints provided by the API:
       DELETE /api/rentals/:id - Delete a rental by rental ID
 
     Reviews
-      POST /api/revies - Create review
+      GET /api/reviews - Get all reviews
+      POST /api/reviews - Create a new review
      
 
     
