@@ -60,6 +60,8 @@ Here are the main endpoints provided by the API:
     
     Aircrafts
       GET /api/aircrafts - Get all aircrafts
+      GET /api/aircrafts/:id - Get a single aircraft by airline ID
+      DELETE /api/movies/:id - Delete a aircraft by aircraft ID
     
     Airlines
       GET /api/airlines - Get all airlines
