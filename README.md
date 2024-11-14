@@ -80,7 +80,10 @@ Here are the main endpoints provided by the API:
 
     Rentals
       GET /api/rentals - Get all rentals
+      GET /api/rentals/:id - Get a single rental by rental ID
       POST /api/rentals  - Create rental
+      POST /api/rentals - Create a new rental
+      DELETE /api/rentals/:id - Delete a rental by rental ID
 
     Reviews
       POST /api/revies - Create review
