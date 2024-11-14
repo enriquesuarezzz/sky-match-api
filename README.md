@@ -61,8 +61,8 @@ Here are the main endpoints provided by the API:
     Aircrafts
       GET /api/aircrafts - Get all aircrafts
       GET /api/aircrafts/:id - Get a single aircraft by airline ID
-      DELETE /api/aircraft/:id - Delete an aircraft by aircraft ID
-      POST /api/aircraft - Create a new aircraft
+      DELETE /api/aircrafts/:id - Delete an aircraft by aircraft ID
+      POST /api/aircrafts - Create a new aircraft
     
     Airlines
       GET /api/airlines - Get all airlines
