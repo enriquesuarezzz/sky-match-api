@@ -36,7 +36,7 @@ router.post(
       if (existingUsers.length > 0) {
         return res
           .status(409)
-          .json({ message: "Ya exiiste una cuenta con este email" });
+          .json({ message: "Ya existe una cuenta con este email" });
       }
 
       // Insert the new airline into the ddbb
